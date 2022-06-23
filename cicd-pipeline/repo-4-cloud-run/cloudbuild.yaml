@@ -1,0 +1,14 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/sylerseclearn2022-348606/runimage', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/sylerseclearn2022-348606/runimage']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'runwithcicd', '--image', 'gcr.io/sylerseclearn2022-348606/runimage', '--region', 'us-central1', '--allow-unauthenticated']
+images:
+- gcr.io/sylerseclearn2022-348606/runimage
+
