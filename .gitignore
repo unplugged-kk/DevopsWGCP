@@ -30,3 +30,4 @@ override.tf.json
 .sfdx/*
 .DS_Store
 .gitsubmodules
+*.json
